@@ -37,20 +37,20 @@ public class PersonaControladora {
     
     @PutMapping("/personas/editar/{id}")
     public Persona editPersona(@PathVariable Integer id,
-                               @RequestParam ("nombre_y_apellido") String nuevoNombreyApellido,
-                               @RequestParam ("img_perfil") String nuevoImgPerfil,
+                               @RequestParam ("nombre") String nuevoNombreyApellido,
+                               @RequestParam ("imgPerfil") String nuevoImgPerfil,
                                @RequestParam ("subtitulo") String nuevoSubtitulo,
                                @RequestParam ("acerca") String nuevoAcerca,
-                               @RequestParam ("usuario_id") int nuevoUsuarioId){
+                               @RequestParam ("usuarioId") Integer nuevoUsuarioId){
         
         Persona p = interPers.findPersona(id);
         
         
-        p.setNombre_y_apellido(nuevoNombreyApellido);
-        p.setImg_perfil(nuevoImgPerfil);
+        p.setNombre(nuevoNombreyApellido);
+        p.setImgPerfil(nuevoImgPerfil);
         p.setSubtitulo(nuevoSubtitulo);
         p.setAcerca(nuevoAcerca);
-        p.setUsuario_id(nuevoUsuarioId);
+        p.setUsuarioId(nuevoUsuarioId);
         
         interPers.savePersona(p);
        
