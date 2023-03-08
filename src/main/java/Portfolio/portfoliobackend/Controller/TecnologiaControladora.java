@@ -35,20 +35,8 @@ public class TecnologiaControladora {
         return "La persona fue eliminada correctamente";
     }
     
-    @PutMapping("/tecnologias/editar/{id}")
-    public Tecnologia editTecnologia(@PathVariable Integer id,
-                               @RequestParam ("nombre") String nuevoNombre,
-                               @RequestParam ("img_logo") String nuevoImgLogo,
-                               @RequestParam ("porcentaje") int nuevoPorcentaje,
-                               @RequestParam ("persona_id") int nuevaPersonaId){
-        
-        Tecnologia t = interPers.findTecnologia(id);
-              
-        t.setNombre(nuevoNombre);
-        t.setImg_logo(nuevoImgLogo);
-        t.setPorcentaje(nuevoPorcentaje);
-        t.setPersona_id(nuevaPersonaId);
-    
+    @PutMapping("/tecnologias/editar")
+    public Tecnologia editTecnologia(@RequestBody Tecnologia t){
         interPers.saveTecnologia(t);
        
         return t;

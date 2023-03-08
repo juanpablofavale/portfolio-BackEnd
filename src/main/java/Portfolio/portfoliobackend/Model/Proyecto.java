@@ -18,5 +18,5 @@ public class Proyecto {
     private String imagen;
     private String descripcion;
     private String enlace;
-    private int persona_int;
+    private int personaint;
 }

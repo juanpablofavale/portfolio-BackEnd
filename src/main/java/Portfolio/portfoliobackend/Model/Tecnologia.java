@@ -15,7 +15,7 @@ public class Tecnologia {
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     private String nombre;
-    private String img_logo;
+    private String imglogo;
     private int porcentaje;
-    private int persona_id;
+    private int personaid;
 }

@@ -42,38 +42,9 @@ public class UsuarioControladora {
         return "La persona fue eliminada correctamente";
     }
     
-    /*@PutMapping("/usuarios/editar/{id}")
-    public Usuario editUsuario(@PathVariable Integer id,
-                               @RequestParam ("nombre_usuario") String nuevoNombreUsuario,
-                               @RequestParam ("contraseña") String nuevaContraseña,
-                               @RequestParam ("email") String nuevoEmail,
-                               @RequestParam ("telefono") String nuevoTelefono){
-        
-        Usuario u = interPers.findUsuario(id);
-
-        u.setNombre_usuario(nuevoNombreUsuario);
-        u.setContraseña(nuevaContraseña);
-        u.setEmail(nuevoEmail);
-        u.setTelefono(nuevoTelefono);
-        
+    @PutMapping("/usuarios/editar")
+    public Usuario editUsuario(@RequestBody Usuario u){
         interPers.saveUsuario(u);
-       
-        return u;
-    }*/
-
-    @PutMapping("/usuarios/editar/{id}")
-    public Usuario editUsuario(@PathVariable Integer id, @RequestBody Usuario us){
-        
-        Usuario u = interPers.findUsuario(id);
-
-        if (u != null){           
-            u.setNombre_usuario(us.getNombre_usuario());
-            u.setContraseña(us.getContraseña());
-            u.setEmail(us.getEmail());
-            u.setTelefono(us.getTelefono());
-
-            interPers.saveUsuario(u);
-        }
        
         return u;
     }

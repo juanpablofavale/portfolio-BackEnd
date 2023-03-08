@@ -35,24 +35,9 @@ public class ProyectoControladora {
         return "La persona fue eliminada correctamente";
     }
     
-    @PutMapping("/proyectos/editar/{id}")
-    public Proyecto editProyecto(@PathVariable Integer id,
-                               @RequestParam ("nombre") String nuevoNombre,
-                               @RequestParam ("imagen") String nuevoImagen,
-                               @RequestParam ("descripcion") String nuevoDescripcion,
-                               @RequestParam ("enlace") String nuevoEnlace,
-                               @RequestParam ("persona_id") int nuevaPersonaId){
-               
-        Proyecto pro = interPers.findProyecto(id);
-        
-        pro.setNombre(nuevoNombre);
-        pro.setImagen(nuevoImagen);
-        pro.setDescripcion(nuevoDescripcion);
-        pro.setEnlace(nuevoEnlace);
-        pro.setPersona_int(nuevaPersonaId);
-        
-        interPers.saveProyecto(pro);
-       
+    @PutMapping("/proyectos/editar")
+    public Proyecto editProyecto(@RequestBody Proyecto pro){
+        interPers.saveProyecto(pro);        
         return pro;
     }
 }

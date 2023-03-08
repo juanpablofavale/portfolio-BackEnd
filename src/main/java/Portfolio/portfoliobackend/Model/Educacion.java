@@ -15,10 +15,10 @@ public class Educacion {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
-    private String img_logo;
-    private String nombre_institucion;
+    private String imglogo;
+    private String nombreinstitucion;
     private String titulo;
-    private Date fecha_desde;
-    private Date fecha_hasta;
-    private int persona_int;
+    private String fechadesde;
+    private String fechahasta;
+    private int personaint;
 }

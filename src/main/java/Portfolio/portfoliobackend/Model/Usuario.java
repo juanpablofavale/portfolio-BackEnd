@@ -14,7 +14,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
-    private String nombre_usuario;
+    private String nombreusuario;
     private String contraseña;
     private String email;
     private String telefono;   

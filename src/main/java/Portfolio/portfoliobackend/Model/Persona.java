@@ -15,9 +15,9 @@ public class Persona {
     private Integer id;
     
     private String nombre;
-    private String imgPerfil;
+    private String imgperfil;
     private String subtitulo;
     private String acerca;
-    private Integer usuarioId;
+    private Integer usuarioid;
 
 }

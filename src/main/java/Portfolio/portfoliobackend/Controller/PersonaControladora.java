@@ -35,25 +35,9 @@ public class PersonaControladora {
         return "La persona fue eliminada correctamente";
     }
     
-    @PutMapping("/personas/editar/{id}")
-    public Persona editPersona(@PathVariable Integer id,
-                               @RequestParam ("nombre") String nuevoNombreyApellido,
-                               @RequestParam ("imgPerfil") String nuevoImgPerfil,
-                               @RequestParam ("subtitulo") String nuevoSubtitulo,
-                               @RequestParam ("acerca") String nuevoAcerca,
-                               @RequestParam ("usuarioId") Integer nuevoUsuarioId){
-        
-        Persona p = interPers.findPersona(id);
-        
-        
-        p.setNombre(nuevoNombreyApellido);
-        p.setImgPerfil(nuevoImgPerfil);
-        p.setSubtitulo(nuevoSubtitulo);
-        p.setAcerca(nuevoAcerca);
-        p.setUsuarioId(nuevoUsuarioId);
-        
+    @PutMapping("/personas/editar")
+    public Persona editPersona(@RequestBody Persona p){
         interPers.savePersona(p);
-       
         return p;
     }
 }
