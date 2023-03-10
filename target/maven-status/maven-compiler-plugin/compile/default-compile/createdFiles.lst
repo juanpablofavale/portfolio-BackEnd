@@ -27,6 +27,7 @@ Portfolio\portfoliobackend\Controller\TecnologiaControladora.class
 Portfolio\portfoliobackend\Controller\UsuarioControladora.class
 Portfolio\portfoliobackend\Controller\ProyectoControladora.class
 Portfolio\portfoliobackend\Repository\UsuarioRepository.class
+Portfolio\portfoliobackend\Controller\Mensaje.class
 Portfolio\portfoliobackend\Model\Persona.class
 Portfolio\portfoliobackend\Service\IPersonaService.class
 Portfolio\portfoliobackend\Service\IProyectoService.class
