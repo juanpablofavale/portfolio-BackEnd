@@ -4,6 +4,9 @@ import Portfolio.portfoliobackend.Model.Experiencia;
 import Portfolio.portfoliobackend.Service.IExperienciaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,31 +16,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class ExperienciaControladora {
 
     @Autowired
     private IExperienciaService interPers;
     
     @GetMapping("/experiencias/traer")
-    public List<Experiencia> getExperienciaes(){
-        return interPers.getExperiencias();
+    public ResponseEntity<List<Experiencia>> getExperienciaes(){
+        return new ResponseEntity(interPers.getExperiencias(), HttpStatus.OK);
     }
     
     @PostMapping("/experiencias/crear")
-    public String createExperiencia(@RequestBody Experiencia e){
+    public ResponseEntity<?> createExperiencia(@RequestBody Experiencia e){
         interPers.saveExperiencia(e);
-        return "La persona fue creada correctamente";
+        return new ResponseEntity(new Mensaje("Experiencia creada"), HttpStatus.OK);
     }
     
     @DeleteMapping("/experiencias/borrar/{id}")
-    public String deleteExperiencia(@PathVariable Integer id){
+    public ResponseEntity<?> deleteExperiencia(@PathVariable Integer id){
         interPers.deleteExperiencia(id);
-        return "La persona fue eliminada correctamente";
+        return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
     
     @PutMapping("/experiencias/editar")
-    public Experiencia editExperiencia(@RequestBody Experiencia e){
+    public ResponseEntity<?> editExperiencia(@RequestBody Experiencia e){
         interPers.saveExperiencia(e);
-        return e;
+        return new ResponseEntity(new Mensaje("Experiencia modificada"), HttpStatus.OK);
     }
 }

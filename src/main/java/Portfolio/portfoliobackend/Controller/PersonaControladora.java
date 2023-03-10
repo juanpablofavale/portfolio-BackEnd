@@ -4,6 +4,9 @@ import Portfolio.portfoliobackend.Model.Persona;
 import Portfolio.portfoliobackend.Service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,30 +17,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class PersonaControladora {
     @Autowired
     private IPersonaService interPers;
     
     @GetMapping("/personas/traer")
-    public List<Persona> getPersonas(){
-        return interPers.getPersonas();
+    public ResponseEntity<List<Persona>> getPersonas(){
+        return new ResponseEntity(interPers.getPersonas(), HttpStatus.OK);
+        
     }
     
     @PostMapping("/personas/crear")
-    public String createPersona(@RequestBody Persona e){
+    public ResponseEntity<?> createPersona(@RequestBody Persona e){
         interPers.savePersona(e);
-        return "La persona fue creada correctamente";
+        return new ResponseEntity(new Mensaje("Persona creada"), HttpStatus.OK);
     }
     
     @DeleteMapping("/personas/borrar/{id}")
-    public String deletePersona(@PathVariable Integer id){
+    public ResponseEntity<?> deletePersona(@PathVariable Integer id){
         interPers.deletePersona(id);
-        return "La persona fue eliminada correctamente";
+        return new ResponseEntity(new Mensaje("Persona eliminada"), HttpStatus.OK);
     }
     
     @PutMapping("/personas/editar")
-    public Persona editPersona(@RequestBody Persona p){
+    public ResponseEntity<?> editPersona(@RequestBody Persona p){
         interPers.savePersona(p);
-        return p;
+        return new ResponseEntity(new Mensaje("Persona modificada"), HttpStatus.OK);
     }
 }
