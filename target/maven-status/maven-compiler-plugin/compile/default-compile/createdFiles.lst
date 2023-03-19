@@ -15,6 +15,7 @@ Portfolio\portfoliobackend\PortfolioBackendApplication.class
 Portfolio\portfoliobackend\Repository\ExperienciaRepository.class
 Portfolio\portfoliobackend\Service\TecnologiaService.class
 Portfolio\portfoliobackend\Model\Experiencia.class
+Portfolio\portfoliobackend\Model\RespuestaUsuario.class
 Portfolio\portfoliobackend\Service\IEducacionService.class
 Portfolio\portfoliobackend\Service\PersonaService.class
 Portfolio\portfoliobackend\Model\Tecnologia.class
