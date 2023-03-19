@@ -1,9 +1,12 @@
 
 package Portfolio.portfoliobackend.Controller;
 
+import Portfolio.portfoliobackend.Model.RespuestaUsuario;
 import Portfolio.portfoliobackend.Model.Usuario;
 import Portfolio.portfoliobackend.Service.IUsuarioService;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://juanpablofavale-portfolio.web.app/")
 public class UsuarioControladora {
     @Autowired
     private IUsuarioService interPers;
@@ -34,6 +38,29 @@ public class UsuarioControladora {
         return new ResponseEntity(interPers.getUsuarios(), HttpStatus.OK);
     }
     
+    @PostMapping("/usuarios/existe")
+    public ResponseEntity<?> getUsuario(@RequestBody Usuario u){
+        RespuestaUsuario rta = new RespuestaUsuario("", 0);
+        
+        String mensaje = "Usuario Inexistente";
+        List<Usuario> usuarios = interPers.getUsuarios();
+        for(Usuario usu : usuarios){
+            if (u.getNombreusuario().equals(usu.getNombreusuario())){
+                if(u.getContraseña().equals(usu.getContraseña())){
+                    rta.setMensaje("Usuario y Contraseña Correctos");
+                    rta.setCodigo(0);
+                }else{
+                    rta.setMensaje("Contraseña Incorrecta");
+                    rta.setCodigo(1);
+                }
+            }else{
+                    rta.setMensaje("Usuario Inexistente");
+                    rta.setCodigo(2);
+            }
+        }
+        return new ResponseEntity( rta, HttpStatus.OK);
+    }
+
     @PostMapping("/usuarios/crear")
     public ResponseEntity<?> createUsuario(@RequestBody Usuario e){
         interPers.saveUsuario(e);
